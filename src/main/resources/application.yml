@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: DevNet
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_db
+    username: root
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
