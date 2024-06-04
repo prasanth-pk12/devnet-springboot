@@ -5,8 +5,6 @@
     import jakarta.servlet.http.HttpServletRequest;
     import jakarta.servlet.http.HttpServletResponse;
     import lombok.RequiredArgsConstructor;
-    import org.slf4j.Logger;
-    import org.slf4j.LoggerFactory;
     import org.springframework.lang.NonNull;
     import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
     import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,8 +22,6 @@
         private final JwtService jwtService;
         private final UserDetailsService userDetailsService;
 
-        private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
         @Override
         protected void doFilterInternal(
                 @NonNull HttpServletRequest request,
@@ -33,7 +29,6 @@
                 @NonNull FilterChain filterChain
         ) throws ServletException, IOException {
 
-            logger.info("Helloooo....");
             final String authHeader = request.getHeader("Authorization");
             final String jwt;
             final String userEmail;

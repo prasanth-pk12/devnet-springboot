@@ -2,23 +2,28 @@ spring:
   application:
     name: DevNet
   datasource:
-    url: jdbc:mysql://localhost:3306/test_db
-    username: root
-    password: admin
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
         format_sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQLDialect
-
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+    user: ${DB_USER}
+    password: ${DB_PASSWORD}
+    baseline-description: "init"
+    baseline-version: 0
+# actuator settings
 management:
   endpoints:
     web:
       exposure:
         include: "*"
-
-
