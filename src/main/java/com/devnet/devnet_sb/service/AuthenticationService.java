@@ -23,9 +23,14 @@ public class AuthenticationService {
 
     public AuthenticationResponse register(RegisterRequest request){
 
+        if (userRepo.existsByEmail(request.getEmail())) {
+            throw new IllegalArgumentException("Email already exists: " + request.getEmail());
+        }
+
         User user = User.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())
+                .phone(request.getPhone())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
                 .build();
